@@ -27,9 +27,12 @@ public class ContactJSON {
         params.add(new BasicNameValuePair("kampania_id", c_kampania_id));
         params.add(new BasicNameValuePair("kampania_data", dtf.format(contact.getLdt())));
         params.add(new BasicNameValuePair("kampania_security_key", contact.getSecurityKey()));
-        params.add(new BasicNameValuePair("contact_powiat", contact.getDistrict()));
-        params.add(new BasicNameValuePair("contact_gmina", contact.getCommunity()));
-        params.add(new BasicNameValuePair("contact_adres", contact.getAddress()));
+        if(contact.getDistrict().equals(""))
+            params.add(new BasicNameValuePair("contact_powiat", contact.getDistrict()));
+        if(contact.getCommunity().equals(""))
+            params.add(new BasicNameValuePair("contact_gmina", contact.getCommunity()));
+        if(contact.getAddress().equals(""))
+            params.add(new BasicNameValuePair("contact_adres", contact.getAddress()));
         if(contact.getBaner())
             params.add(new BasicNameValuePair("pomoc_baner", "1"));
         if(contact.getPlakat())
